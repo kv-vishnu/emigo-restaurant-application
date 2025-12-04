@@ -1,0 +1,214 @@
+
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/css/order-details-accordion.css">
+
+    <div class="" id="">
+        <div class="popup">
+
+            <?php //print_r($orders); ?>
+
+            <!-- Popup content start -->
+            <?php if (!empty($orders)) { ?>
+            <div class="popup-content">
+                <!-- Order 1 -->
+                <?php foreach ($orders as $index => $order){ ?>
+                <?php
+                    $isFirst = ($index === 0) ? 'active' : '';
+                ?>
+                <div class="accordion-item <?php echo $isFirst; ?> ">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="order-info">
+                            <span class="order-id">Order #<?= $order['orderno']; ?></span>
+                            <span class="order-total"><?= round($order['total_amount_after_return'], 2); ?></span>
+                        </div>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+
+                    <?php
+                        $container_class = ($role_id == 2) ? 'shop_admin_table' : 'supplier_table';
+                    ?>
+                    <div class="accordion-body">
+                        <div class="order-items table_orders <?= $container_class ?>">
+
+                            <!-- Table Heading Row -->
+                                <div class="order-item order-item-header">
+                                    <span class="item-name">Item Name</span>
+                                    <div class="item-details">
+                                        <div class="item-qty">
+                                            <span class="qty-label">Quantity</span>
+                                        </div>
+                                        <span class="item-rate">Rate</span>
+                                        <span class="item-total">Total</span>
+                                    </div>
+                                </div>
+                            <!-- Table Heading Row -->
+
+                            <?php
+                            $any_item_not_approved = false;
+                            foreach ($order['items'] as $it) {
+                                if ($it['is_approve'] == 0) {
+                                    $any_item_not_approved = true;
+                                    break;
+                                }
+                            }
+                            ?>
+
+                            <!-- loop item start -->
+                            <?php foreach ($order['items'] as $key => $item){
+                                    $productName = $this->Tablemodel->getProductName($item['product_id']);
+                                    $variantName = $this->Tablemodel->getVariantName($item['variant_id']);
+
+                                    $item_quantity = $item['quantity'] - $item['return_qty'];
+
+                                    $total_variant = 1;
+                                    if($item['variant_id'])
+                                    {
+                                        $variantValue = $this->Tablemodel->getVariantValue($item['variant_id'], $item['product_id']);
+                                        $total_variant =  $item_quantity * $variantValue;
+                                    }
+
+                                    $bgColor = $item['is_reorder'] ? '#86d7cf' : '#fff';
+
+                                    // if approved order disable qty section
+                                    $approved_user = $order['approved_by'];
+                                    $is_approved_item = $item['is_approve'];
+                                    $item_quantity_disabled = ($is_approved_item == 0) ? '' : 'disabled';
+                                    $cancel_button_disabled = ($role_id == 2) ? '' : 'd-none';
+                                    $return_label = (!empty($item['return_qty'])) ? $item['return_qty'] . ' Return' : '';
+                                    $replace_label = (!empty($item['replace_qty'])) ? $item['replace_qty'] . ' Replace' : '';
+                            ?>
+                            <div class="order-item" style="background-color:<?= $bgColor; ?>">
+                                <span class="product-id" style="display:none;"><?= $item['product_id'] ?></span>
+                                <!-- Update order item using this PK ID -->
+                                <span class="order-item-id" style="display:none;"><?= $item['id'] ?></span>
+                                <span class="order-number" style="display:none;"><?= $order['orderno'] ?></span>
+                                <span class="order-item-rate" style="display:none;"><?= $item['rate']; ?></span>
+                                <span class="order-item-tax-amount" style="display:none;"><?= $item['tax_amount']; ?></span>
+                                <span class="item-variant-value" style="display:none;"><?= $variantValue; ?></span>
+
+                                <!-- variant total hidden field for each row -->
+                                <input type="hidden" class="product_<?= $order['orderno'] ?><?= $item['product_id'] ?>_total_stock" value="<?= $total_variant; ?>">
+
+
+
+                                <span class="item-name"><?= $productName . ($variantName ? ' (' . $variantName . ')' : ''); ?></span>
+
+                                <div class="item-details">
+
+                                    <div class="item-qty">
+                                        <div class="qty-controls">
+                                            <button <?= $item_quantity_disabled ?> class="qty-btn" onclick="decrementQty(this)" type="button">−</button>
+                                            <span class="qty-value"><?= $item_quantity; ?></span>
+                                            <button <?= $item_quantity_disabled ?> class="qty-btn" onclick="incrementQty(this)" type="button">+</button>
+                                        </div>
+                                    </div>
+                                    <span class="item-rate" data-rate="<?= $item['rate']; ?>"><?= $item['rate']; ?></span>
+                                    <span class="item-total"><?= $item['rate'] * $item_quantity; ?></span>
+                                    <button
+                                        type="button"
+                                        class="btn btn-delete return_order <?= $cancel_button_disabled ?>"
+                                        <?= $deleted_entry_button_disable ?>
+                                        data-variant-id="<?= $item['variant_id'] ?>"
+                                        data-order-id="<?= $order['orderno'] ?>"
+                                        data-item-id="<?= $item['product_id'] ?>"
+                                        data-qty="<?= $item_quantity ?>"
+                                        data-order-item-id="<?= $item['id'] ?>"
+                                        data-item="<?= $productName . ($variantName ? ' (' . $variantName . ')' : '') ?>"
+                                    >
+                                        Cancel
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="btn btn-delete delete_order_item <?= $delete_button_disabled ?>"
+                                        data-order-item-id="<?= $item['id'] ?>"
+                                        data-order-id="<?= $order['orderno'] ?>"
+                                     >
+                                        Delete
+                                    </button>
+
+                                    <span class="item-return"><?= $return_label ?><?= $replace_label ?></span>
+
+                                </div>
+                            </div>
+                            <!-- loop item end -->
+                            <?php } ?>
+                        </div>
+
+                        <!-- Switch button clours and text based on order status -->
+                        <?php
+                            $login_user_id = $user_id;//Logged in user id
+                            $user_role_id = $role_id; //Admin or Shopowner
+                            $approved_user = $order['approved_by'];
+                            $approved_disabled = ($any_item_not_approved) ? '' : 'disabled';
+                            $delete_disabled = ($approved_user) ? 'disabled' : '';
+                            $order_status = $order['order_status'];
+                            switch ($order_status) {
+                                case 0:
+                                    $btn_text = 'Pending';
+                                    $btn_class = 'btn-pending';
+                                    break;
+                                case 1:
+                                    $btn_text = 'Approved';
+                                    $btn_class = 'btn-approve';
+                                    break;
+                                case 2:
+                                    $btn_text = 'Cooking';
+                                    $btn_class = 'btn-cooking';
+                                    break;
+                                case 3:
+                                    $btn_text = 'Ready';
+                                    $btn_class = 'btn-ready';
+                                    break;
+                                case 4:
+                                    $btn_text = 'Out For Delivery';
+                                    $btn_class = 'btn-out-for-delivery';
+                                    break;
+                                case 5:
+                                    $btn_text = 'Delivered';
+                                    $btn_class = 'btn-delivered';
+                                    break;
+                                default:
+                                    $btn_text = 'Unknown';
+                                    $btn_class = 'btn-secondary';
+                                    break;
+                            }
+                        ?>
+                        <div class="action-buttons order-row">
+                            <!-- <span class="btn <?= $btn_class ?>"><?= $btn_text ?></span> -->
+                            <span class="btn"><?= $btn_text ?></span>
+                            <!-- user id 1 or 2 display select box otherwise logged inuser id should not change -->
+                            <?php if($user_role_id == 1 || $user_role_id == 2){ ?>
+                                <select class="select-box supplier-select">
+                                <option value="">Select Supplier</option>
+                                <?php foreach ($suppliers as $supplier) { ?>
+                                    <option value="<?= $supplier['userid'] ?>" <?= ($supplier['userid'] == $approved_user) ? 'selected' : '' ?>><?= $supplier['Name'] ?></option>
+                                <?php } ?>
+                                </select>
+                            <?php }else{ ?>
+                                <select class="select-box supplier-select" disabled>
+                                <?php foreach ($suppliers as $supplier) { ?>
+                                    <option value="<?= $supplier['userid'] ?>" <?= ($supplier['userid'] == $login_user_id) ? 'selected' : '' ?>><?= $supplier['Name'] ?></option>
+                                <?php } ?>
+                                </select>
+                            <?php } ?>
+
+                            <button data-order-id=<?= $order['orderno']; ?> data-kot-enable=<?= $kot_enable; ?> class="btn btn-approve" <?= $approved_disabled ?>>Approve</button>
+                            <button data-order-id=<?= $order['orderno']; ?> class="btn btn-print print_table_order">Print</button>
+                            <button data-order-id=<?= $order['orderno']; ?> class="btn btn-delete delete_order" <?= $delete_disabled ?>>Delete</button>
+                            <button data-order-id=<?= $order['orderno']; ?> class="btn btn-pay new_order_item">Add Item</button>
+                        </div>
+                    </div>
+                </div>
+                <?php } ?>
+                <!-- Order 1 end -->
+
+            </div>
+            <?php } else { ?>
+                <div class="popup-content">
+                    No pending orders for this table.
+                </div>
+                <?php } ?>
+            <!-- Popup content end -->
+        </div>
+
+
+        <script src="<?php echo base_url(); ?>assets/admin/js/owner/order/pending_orders_by_table.js"></script>

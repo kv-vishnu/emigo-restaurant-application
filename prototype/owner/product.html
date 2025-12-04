@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emigo Restaurant Application</title>
+    <link href="../../assets/admin/css/styles.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="application-header">
+        <div class="application-header__container container">
+            <div class="application-header__brand">
+                <a href="../owner/dashboard.html" class="application-header__brand-logo">
+                    <img src="../../assets/admin/images/logo.webp" alt="brand lgo"
+                        class="application-header__brand-logo-img" width="97" height="97">
+                </a>
+                <div class="application-header__brand-address">
+                    <h2 class="application-header__brand-name">Mehrab Mandhi Restaurant</h2>
+                    <p class="application-header__brand-address">MKS Square, Palarivattom, Kochi Kerala India - 682025
+                    </p>
+                </div>
+            </div>
+            <div class="application-header__provider">
+                <img src="../../assets/admin/images/choose-my-food.webp" alt="choose my food logo"
+                    class="application-header__provider-img" width="160" height="37">
+                <div class="application-header__provider-description">Powered By EMIGO</div>
+            </div>
+        </div>
+    </div>
+    <div class="application-content dashboard-content">
+        <div class="application-content__container container">
+            <div class="application-navigation">
+                <ul class="application-navigation__ul">
+                    <li class="application-navigation__li">
+                        <a href="index.html" class="application-navigation__a">Dashboard</a>
+                    </li>
+                    <li class="application-navigation__li">
+                        <a href="" class="application-navigation__a application-navigation__a--active">Dishes
+                            Catalog</a>
+                    </li>
+                    <li class="application-navigation__li">
+                        <a href="" class="application-navigation__a">Order Monitor</a>
+                    </li>
+                    <li class="application-navigation__li">
+                        <a href="" class="application-navigation__a">Reports</a>
+                    </li>
+                    <li class="application-navigation__li">
+                        <a href="" class="application-navigation__a">Settings</a>
+                    </li>
+                    <li class="application-navigation__li">
+                        <a href="" class="application-navigation__a">Logout</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="search-add-new-dish-list-combo">
+                <form class="product-search__form search">
+                    <input type="text" placeholder="Search for a product" name="search"
+                        class="product-search__field search-input1">
+                    <button type="submit" class="product-search__button"><img
+                            src="../../assets/admin/images/product-search-icon.svg" width="22" height="23"
+                            alt="SearchIcon" class="product-search__icon"></button>
+                    <ul id="autocomplete-results1" class="autocomplete-results">
+                    </ul>
+                </form>
+                <div class="add-new-dish-list-combo">
+                    <a href="" class="add-new-dish-btn btn1">
+                        <img src="../../assets/admin/images/add-new-dish-icon.svg" alt="add new dish"
+                            class="add-new-dish__icon" width="23" height="23">
+                        Add New Dish
+                    </a>
+                    <a href="" class="list-combo-btn btn2">
+                        <img src="../../assets/admin/images/list-combo-icon.svg" alt="list combo icon"
+                            class="list-combo__icon" width="23" height="23">
+                        Add New Dish
+                    </a>
+                </div>
+
+            </div>
+            <div class="product-list">
+                <div class="product-list__item">
+                    <div class="product-list__item-image-and-details">
+                        <img src="../../assets/admin/images/chapathi.webp" alt="chapathi" class="product-list__item-img"
+                            width="190" height="150">
+                        <div class="product-list__item-details">
+                            <h3 class="product-list__item-name">Chappathi</h3>
+                            <p class="product-list__item-price">₹13.00</p>
+                            <p class="product-list__item-status-unavailable">Unavailable</p>
+                            <div class="product-list__item-stock">
+                                <div class="product-list__item-stock-label">Stock</div>
+                                <div class="product-list__item-stock-count">0</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-list__item-buttons-block">
+                        <a href="" class="product-list__item-buttons-block-btn btn3"><img
+                                class="product-list__item-button-img" src="../../assets/admin/images/add-stock-icon.svg"
+                                alt="add stock" width="23" height="24"> Add
+                            Stock</a>
+                        <a href="" class="product-list__item-buttons-block-btn btn3"><img
+                                class="product-list__item-button-img"
+                                src="../../assets/admin/images/remove-stock-icon.svg" alt="add stock" width="23"
+                                height="22">Remove
+                            Stock</a>
+                        <a href="" class="product-list__item-buttons-block-btn btn3"><img
+                                class="product-list__item-button-img"
+                                src="../../assets/admin/images/next-available-time-icon.svg" alt="add stock" width="23"
+                                height="24">Next
+                            Available Time</a>
+                        <a href="" class="product-list__item-buttons-block-btn btn3"><img
+                                class="product-list__item-button-img" src="../../assets/admin/images/edit-dish-icon.svg"
+                                alt="add stock" width="23" height="22">Edit Dish</a>
+                    </div>
+                </div>
+                <div class="product-list__item">
+                    <div class="product-list__item-image-and-details">
+                        <img src="../../assets/admin/images/butter-chicken.webp" alt="chapathi"
+                            class="product-list__item-img" width="190" height="150">
+                        <div class="product-list__item-details">
+                            <h3 class="product-list__item-name">Buttur Chicken</h3>
+                            <p class="product-list__item-price">₹150.00</p>
+                            <p class="product-list__item-status-available">Available</p>
+                            <div class="product-list__item-stock">
+                                <div class="product-list__item-stock-label">Stock</div>
+                                <div class="product-list__item-stock-count">50</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-list__item-buttons-block">
+                        <a href="" class="product-list__item-buttons-block-btn btn3"><img
+                                class="product-list__item-button-img" src="../../assets/admin/images/add-stock-icon.svg"
+                                alt="add stock" width="23" height="24"> Add
+                            Stock</a>
+                        <a href="" class="product-list__item-buttons-block-btn btn3"><img
+                                class="product-list__item-button-img"
+                                src="../../assets/admin/images/remove-stock-icon.svg" alt="add stock" width="23"
+                                height="22">Remove
+                            Stock</a>
+                        <a href="" class="product-list__item-buttons-block-btn btn3"><img
+                                class="product-list__item-button-img"
+                                src="../../assets/admin/images/next-available-time-icon.svg" alt="add stock" width="23"
+                                height="24">Next
+                            Available Time</a>
+                        <a href="" class="product-list__item-buttons-block-btn btn3"><img
+                                class="product-list__item-button-img" src="../../assets/admin/images/edit-dish-icon.svg"
+                                alt="add stock" width="23" height="22">Edit Dish</a>
+                    </div>
+                </div>
+                <div class="product-list__item">
+                    <div class="product-list__item-image-and-details">
+                        <img src="../../assets/admin/images/hummus.webp" alt="chapathi" class="product-list__item-img"
+                            width="190" height="150">
+                        <div class="product-list__item-details">
+                            <h3 class="product-list__item-name">Hummus</h3>
+                            <p class="product-list__item-price">₹12.00</p>
+                            <p class="product-list__item-status-unavailable">Unavailable</p>
+                            <div class="product-list__item-stock">
+                                <div class="product-list__item-stock-label">Stock</div>
+                                <div class="product-list__item-stock-count">0</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-list__item-buttons-block">
+                        <a href="" class="product-list__item-buttons-block-btn btn3"><img
+                                class="product-list__item-button-img" src="../../assets/admin/images/add-stock-icon.svg"
+                                alt="add stock" width="23" height="24"> Add
+                            Stock</a>
+                        <a href="" class="product-list__item-buttons-block-btn btn3"><img
+                                class="product-list__item-button-img"
+                                src="../../assets/admin/images/remove-stock-icon.svg" alt="add stock" width="23"
+                                height="22">Remove
+                            Stock</a>
+                        <a href="" class="product-list__item-buttons-block-btn btn3"><img
+                                class="product-list__item-button-img"
+                                src="../../assets/admin/images/next-available-time-icon.svg" alt="add stock" width="23"
+                                height="24">Next
+                            Available Time</a>
+                        <a href="" class="product-list__item-buttons-block-btn btn3"><img
+                                class="product-list__item-button-img" src="../../assets/admin/images/edit-dish-icon.svg"
+                                alt="add stock" width="23" height="22">Edit Dish</a>
+                    </div>
+                </div>
+                <div class="product-list__item">
+                    <div class="product-list__item-image-and-details">
+                        <img src="../../assets/admin/images/mint-lime.webp" alt="chapathi"
+                            class="product-list__item-img" width="190" height="150">
+                        <div class="product-list__item-details">
+                            <h3 class="product-list__item-name">Mint Lime</h3>
+                            <p class="product-list__item-price">₹12.00</p>
+                            <p class="product-list__item-status-available">Available</p>
+                            <div class="product-list__item-stock">
+                                <div class="product-list__item-stock-label">Stock</div>
+                                <div class="product-list__item-stock-count">30</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-list__item-buttons-block">
+                        <a href="" class="product-list__item-buttons-block-btn btn3"><img
+                                class="product-list__item-button-img" src="../../assets/admin/images/add-stock-icon.svg"
+                                alt="add stock" width="23" height="24"> Add
+                            Stock</a>
+                        <a href="" class="product-list__item-buttons-block-btn btn3"><img
+                                class="product-list__item-button-img"
+                                src="../../assets/admin/images/remove-stock-icon.svg" alt="add stock" width="23"
+                                height="22">Remove
+                            Stock</a>
+                        <a href="" class="product-list__item-buttons-block-btn btn3"><img
+                                class="product-list__item-button-img"
+                                src="../../assets/admin/images/next-available-time-icon.svg" alt="add stock" width="23"
+                                height="24">Next
+                            Available Time</a>
+                        <a href="" class="product-list__item-buttons-block-btn btn3"><img
+                                class="product-list__item-button-img" src="../../assets/admin/images/edit-dish-icon.svg"
+                                alt="add stock" width="23" height="22">Edit Dish</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <div class="application-footer">
+        <div class="application-footer__container container">
+            <div class="application-footer__company-logo">
+                <img src="../../assets/admin/images/emigo-logo.svg" alt="emigo logo"
+                    class="application-footer__company-logo-img" width="210" height="69">
+            </div>
+            <div class="application-footer__copyright">@ All rights reserved. Emigo 2025</div>
+            <div class="application-footer__help-desk">
+                <div class="application-footer__help-desk-label">
+                    <img src="../../assets/admin/images/help-desk-icon.svg" alt="help desk icon"
+                        class="application-footer__help-desk-label-icon" width="67" height="47">
+                    <div class="application-footer__help-desk-label-text">Help Desk</div>
+                </div>
+                <div class="application-footer__help-desk-number-and-email">
+                    <div class="application-footer__help-desk-number">
+                        <img src="../../assets/admin/images/help-desk-phone-icon.svg" alt=""
+                            class="application-footer__help-desk-number-icon" width="16" height="17">
+                        <a href="tel:+971-7112713311"
+                            class="application-footer__help-desk-number-link">+971-7112713311</a>
+                    </div>
+                    <div class="application-footer__help-desk-email">
+                        <img src="../../assets/admin/images/help-desk-email-icon.svg" alt=""
+                            class="application-footer__help-desk-email-icon" width="16" height="17">
+                        <a href="mailto:emigo@ae.com" class="application-footer__help-desk-email-link">emigo@ae.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/js/scripts.js"></script>
+</body>
+
+</html>
