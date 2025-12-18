@@ -1,5 +1,5 @@
 //MARK: Show popup alert
-export function showPopupAlert(type, message, reload = false, hideAfter = 2000)
+export function showPopupAlert(type, message, reload = false, hideAfter = 3000)
 {
     //alert('showPopupAlert');
     let modalId = (type === 'success') ? '#successModal' : '#errorModal';

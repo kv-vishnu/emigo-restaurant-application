@@ -481,7 +481,7 @@
                                 <img width="100" height="100"
                                     src="<?php echo base_url(); ?>uploads/store/<?php if(isset($storeDet[0]['store_logo_image'])) echo $storeDet[0]['store_logo_image']; ?>"
                                     class="img-thumbnail">
-                                <input type="file" class="form-control-file" name="store_logo_image">
+                                <input type="file" class="form-control-file" id="store_logo_image" name="store_logo_image">
 
 
                             </div>

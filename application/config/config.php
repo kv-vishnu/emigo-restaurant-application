@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 
-$host = $_SERVER['HTTP_HOST'];
+echo $host = $_SERVER['HTTP_HOST'];exit;
 
 if (in_array($host, ['localhost', '127.0.0.1', '[::1]'])) {
     $config['base_url'] = 'http://localhost/emigo-restaurant-application/';

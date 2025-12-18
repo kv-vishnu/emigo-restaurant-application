@@ -1,8 +1,18 @@
 <!-- Success Modal -->
 <div class="modal fade" id="successModal" tabindex="-1">
-    <div class="modal-dialog modal-sm modal-dialog-centered">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content text-center">
-            <div class="modal-body text-success fw-bold"></div>
+            <div class="modal-body text-success fw-normal"></div>
+        </div>
+    </div>
+</div>
+<!-- success modal -->
+
+<!-- Success Modal -->
+<div class="modal fade" id="errorModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content text-center">
+            <div class="modal-body text-danger fw-normal"></div>
         </div>
     </div>
 </div>
@@ -46,7 +56,7 @@
     <div class="application-footer__container_support container">
         <div class="application-footer__company-logo ">
             <img src="<?php echo base_url();?>assets/admin/images/ChoosemyfoodLogo.png" alt="Choose My Food Logo"
-                class="application-footer__company-logo-img" width="210" height="69">
+                class="application-footer__company-logo-img" width="80" height="60">
         </div>
         <div class="application-footer__copyright">
 

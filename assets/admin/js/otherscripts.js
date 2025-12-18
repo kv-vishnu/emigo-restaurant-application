@@ -1655,6 +1655,54 @@ $(document).ready(function () {
     });
 
 
+
+    //MARK: - Image Validation for product add
+    $("#store_logo_image").change(function ()
+    {
+            //alert('image changed');
+            let input = this;
+            let file = this.files[0];
+
+            // 1. Validate file size (example: max 1MB)
+            if (file.size > 1 * 1024 * 1024) {
+                showPopupAlert('error','Image size must be less than 1 MB', false);
+                $(input).val("");
+                input.type = "";
+                input.type = "file";
+                this.value = "";
+                return;
+            }
+
+            // 2. Validate dimensions
+            let img = new Image();
+            img.src = URL.createObjectURL(file);
+
+            img.onload = function () {
+                let width = this.width;
+                let height = this.height;
+                //alert(width + 'x' + height);
+
+                if (width != 500 && height != 500)
+                {
+                    showPopupAlert('error','Image resolution must be 500 x 500', false);
+                    $(input).val("");
+                    input.type = "";
+                    input.type = "file";
+                    return;
+                }
+                if (width > 2000 || height > 2000)
+                {
+                    showPopupAlert('error','Image resolution must be below 2000 x 2000', false);
+                    $(input).val("");
+                    input.type = "";
+                    input.type = "file";
+                    return;
+                }
+            };
+    });
+
+
+
 // 49. edit product
 $(document).on('click', '.edit_product', function () {
         // alert('edit product');
