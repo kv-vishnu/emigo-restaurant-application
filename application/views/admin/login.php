@@ -190,7 +190,7 @@
                     <div class="errormsg mb-2" role="alert">
                         <?php echo form_error('login[password]'); ?></div>
                     <?php } ?>
-                    <button id="BtnLogin" class="btn btn-login" type="submit">LOGIN</button>
+                    <button id="BtnLogin" class="btn btn-login" type="submit">LOGIN d</button>
                     <div class="powered-by">
                         POWERED BY EMIGO
                     </div>
