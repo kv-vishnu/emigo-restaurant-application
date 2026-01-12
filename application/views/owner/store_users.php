@@ -167,8 +167,8 @@
                                 <select class="form-control" name="role">
                                     <option value="">Select role</option>
                                     <option value="2" <?= set_select('role', '2') ?>>Shop Owner</option>
-                                    <option value="3" <?= set_select('role', '3') ?>>Employee</option>
-                                    <option value="4" <?= set_select('role', '4') ?>>Delivery Boy</option>
+                                    <!-- <option value="3" <?= set_select('role', '3') ?>>Employee</option>
+                                    <option value="4" <?= set_select('role', '4') ?>>Delivery Boy</option> -->
                                     <option value="5" <?= set_select('role', '5') ?>>Supplier</option>
                                     <option value="6" <?= set_select('role', '6') ?>>Kitchen</option>
                                 </select>
@@ -255,9 +255,9 @@
                                         <label class="form-label" for="default-input">Role</label>
                                         <select class="form-control" name="edit_user_role" id="edit_user_role">
                                             <option value="">Select role</option>
-                                            <option value="2" <?= set_select('role', '2') ?>>Shop Owner111</option>
-                                            <option value="3" <?= set_select('role', '3') ?>>Employee</option>
-                                            <option value="4" <?= set_select('role', '4') ?>>Delivery Boy</option>
+                                            <option value="2" <?= set_select('role', '2') ?>>Shop Owner</option>
+                                            <!-- <option value="3" <?= set_select('role', '3') ?>>Employee</option>
+                                            <option value="4" <?= set_select('role', '4') ?>>Delivery Boy</option> -->
                                             <option value="5" <?= set_select('role', '5') ?>>Supplier</option>
                                             <option value="6" <?= set_select('role', '6') ?>>Kitchen</option>
                                         </select>
@@ -459,7 +459,7 @@
     </div>
 </div>
 <!-- success modal -->
- 
+
 <script src="<?php echo base_url();?>assets/admin/js/jquery.min.js"></script>
 <script type="module" src="<?php echo base_url();?>assets/admin/js/ownerscripts.js"></script>
 <script src="<?php echo base_url();?>assets/admin/js/bootstrap.bundle.min.js"></script>
