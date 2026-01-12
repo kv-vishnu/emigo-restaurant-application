@@ -80,7 +80,7 @@
         <div class="form-container">
             <h2>Secret Code Varification</h2>
             <form>
-                <input type="text" id="secret_code_hidden" value="<?php echo $secret_code; ?>">
+                <input type="hidden" id="secret_code_hidden" value="<?php echo $secret_code; ?>">
                 <input type="hidden" id="token" value="<?php echo $token; ?>">
                 <p>Please enter the secret code to proceed:</p>
                 <input type="password" id="secretCode" class="form-control" placeholder="Enter code">
