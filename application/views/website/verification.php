@@ -78,7 +78,7 @@
 
     <div class="background">
         <div class="form-container">
-            <h2>Secret Code Varification</h2>
+            <h2>Secret Code Varificationn</h2>
             <form>
                 <input type="hidden" id="secret_code_hidden" value="<?php echo $secret_code; ?>">
                 <input type="hidden" id="token" value="<?php echo $token; ?>">
