@@ -25,6 +25,7 @@
     <input type="hidden" id="store_phone" value="<?php echo $store_phone; ?>">
     <input type="hidden" id="store_id" value="<?php echo $store_id; ?>">
     <input type="hidden" id="language" name="language" value="<?php echo $language; ?>">
+    <input type="hidden" id="currency" name="currency" value="<?php echo $currency_symbol; ?>">
     <div class="weekly-best-selling-area bg_light-1">
         <div class="container">
             <div class="row">
@@ -83,7 +84,7 @@
 
                             <div class="row">
 
-                                
+
                                 <div class="col-lg-12 text-center">
                                     <img class="logo"
                                         src="<?php if(isset($store_informations->store_logo_image)){ echo base_url()."uploads/store/".$store_informations->store_logo_image;} ?>"
@@ -339,8 +340,6 @@
 
     <!-- plugins js -->
     <script defer src="<?php echo site_url() ?>assets/website/js/plugins.js"></script>
-
-    <!-- custom js -->
     <script defer src="<?php echo site_url() ?>assets/website/js/main.js"></script>
     <!-- header style two End -->
 
@@ -557,9 +556,10 @@ $(document).ready(function() {
         $.ajax({
             url: '<?= base_url("cart/get") ?>',
             method: 'GET',
-            success: function(data) {
-                const cartData = JSON.parse(data);
-                displayCart(cartData);
+            dataType: 'json',
+            success: function(response) {
+                console.log(response);
+                displayCart(response.cart, response.currency);
             }
         });
     }
@@ -570,7 +570,7 @@ $(document).ready(function() {
             url: '<?= base_url("website/products/loadProducts") ?>',
             method: 'GET',
             success: function(data) {
-                console.log(data);
+                //console.log(data);
                 $('#products-content').html(data);
                 initializeProducts();
             }
@@ -578,7 +578,7 @@ $(document).ready(function() {
     }
 
     // Display cart items and update total items count and total value
-    function displayCart(cartData) {
+    function displayCart(cartData, currency) {
         $('#cart-items').empty();
         let totalItems = 0;
         let cartTotal = 0;
@@ -589,7 +589,7 @@ $(document).ready(function() {
             totalItems = parseInt(totalItems) + parseInt(item.quantity);
 
             $('#cart-items').append(
-                `<li>${item.name} - ₹${item.price} x ${item.quantity} = ₹${itemTotal.toFixed(2)}
+                `<li>${item.name} - ${currency}${item.price} x ${item.quantity} = ${currency}${itemTotal.toFixed(2)}
                 <span class="delete-item" data-id="${id}">X</span></li>`
             );
         });
@@ -606,13 +606,13 @@ $(document).ready(function() {
 
             return sum;
         }
-        if (cartTotal != 0) {
+        if (cartTotal !== 0) {
             $('.fixed-cart-total').css('display', 'flex');
-            $('#total-items').html(' YOUR ORDER <br><span id="total-cost">Total Cost : ₹' + cartTotal.toFixed(
-                2) + '</span>');
+            $('#total-items').html(
+                `YOUR ORDER <br><span id="total-cost">Total Cost : ${currency}${cartTotal.toFixed(2)}</span>`
+            );
         } else {
             $('.fixed-cart-total').css('display', 'none');
-
         }
 
         $('#cart-total').text(cartTotal.toFixed(2));
@@ -909,7 +909,6 @@ $(document).ready(function() {
         $('#productDesc').html(desc);
         $('#prodRate').html('₹' + rate);
         $('#prodImage').attr('src', imageUrl);
-
     });
 
 
@@ -948,6 +947,7 @@ $(document).ready(function() {
     });
 
     function updateTotals() {
+        let currencySymbol = document.getElementById('currency').value;
         let productSubTotal = 0;
 
         // Calculate total for variants
@@ -956,7 +956,7 @@ $(document).ready(function() {
             const quantity = parseInt($(this).find('.variant-qty').val()) || 0;
             const variantTotal = price * quantity;
 
-            $(this).find('.variant-total').text('₹' + variantTotal.toFixed(2));
+            $(this).find('.variant-total').text(currencySymbol + variantTotal.toFixed(2));
             productSubTotal += variantTotal;
         });
 
@@ -966,7 +966,7 @@ $(document).ready(function() {
             const quantity = parseInt($(this).find('.addon-qty').val()) || 0;
             const addonTotal = price * quantity;
 
-            $(this).find('.addon-total').text('₹' + addonTotal.toFixed(2));
+            $(this).find('.addon-total').text(currencySymbol + addonTotal.toFixed(2));
             productSubTotal += addonTotal;
         });
 
@@ -976,7 +976,7 @@ $(document).ready(function() {
         const mainProductTotal = mainProductPrice * mainProductQty;
         productSubTotal += mainProductTotal;
 
-        $('#total-price').text('₹' + productSubTotal.toFixed(2));
+        $('#total-price').text(currencySymbol + productSubTotal.toFixed(2));
     }
 
     // Add button functionality

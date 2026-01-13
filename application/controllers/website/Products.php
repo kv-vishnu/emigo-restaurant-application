@@ -603,7 +603,7 @@ class Products extends CI_Controller {
     public function load_orders($token = NULL , $order_no = NULL) {
 
         //echo $token;echo $order_no;exit;
-        // echo $token;
+        //echo $token;
         $this->session->set_userdata('store_token', $token);
         $this->session->set_userdata('order_no', $order_no);
         // $this->session->set_userdata('delivery_type', 'D');
@@ -646,6 +646,7 @@ class Products extends CI_Controller {
         $this->lang->load('labels', $language);
         $data['store_id'] = $store_id;
         $data['language'] = $language;
+        $data['currency_symbol'] = $this->Homemodel->get_currency_symbol_by_store_id($store_id);
 
 
         $data['categories'] = $this->Productmodel->get_categories_with_products('all',$store_id); //load all categories
@@ -674,6 +675,7 @@ class Products extends CI_Controller {
         $delivery_type_phone = $this->Homemodel->getDeliveryTypePhone($store_id,$type);
         $this->session->set_userdata('delivery_type_phone', $delivery_type_phone); //Get phone number by delivery type Pickup or Delivery
         $store_details = $this->Homemodel->get_store_details_by_store_id($store_id); //print_r($store_details); //Get store details
+        $data['currency_symbol'] = $this->Homemodel->get_currency_symbol_by_store_id($store_id);
         $default_language = $store_details->store_language; //get store default language
         //$data['table'] = $store_details_from_token->table_name;
         //echo $default_language;exit;
@@ -919,6 +921,7 @@ class Products extends CI_Controller {
         $product_id = $this->input->post('product_id'); //echo $product_id;
         $date = date('Y-m-d');
         $store_id = $this->input->post('store_id'); //echo $store_id;
+        $currency = $this->Homemodel->get_currency_symbol_by_store_id($store_id);
         $language = $this->input->post('language'); //echo $language;
         $product_details = $this->Productmodel->get_product_by_id($product_id);
         $product_image = $this->Productmodel->get_product_image_by_id($product_id , $store_id);//print_r($product_image);exit;
@@ -1174,7 +1177,7 @@ $addonIds = array_column($addons, 'product_id');
             data-id="<?php echo $product; ?>" class="btn btn-primary full-width-btn w-100 add-to-cart-popup m-0">ADD
             ITEM -
             <span
-                id="total-price">₹<?php if(isset($addon_variant_total)){   echo $addon_variant_total; }else{ echo 0;} ?></span></button>
+                id="total-price"><?php echo $currency; ?><?php if(isset($addon_variant_total)){   echo $addon_variant_total; }else{ echo 0;} ?></span></button>
     </div>
 </div>
 </div>

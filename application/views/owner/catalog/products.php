@@ -51,7 +51,7 @@
                         <?= $product_name ?>
                         </h3>
                         <p class="product-list__item-price">
-                            ₹<?php
+                            <?php echo $currency_symbol; ?><?php
                                             if ($val['is_customizable'] == 0)
                                             {
                                                 echo $val['rate'];

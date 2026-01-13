@@ -25,6 +25,7 @@
     <input type="hidden" id="store_phone" value="<?php echo $store_phone; ?>">
     <input type="hidden" id="store_id" value="<?php echo $store_id; ?>">
     <input type="hidden" id="language" name="language" value="<?php echo $language; ?>">
+    <input type="text" id="currency" name="currency" value="<?php echo $currency_symbol; ?>">
     <div class="weekly-best-selling-area bg_light-1">
         <div class="container">
             <div class="row">
@@ -891,7 +892,7 @@ $(document).ready(function() {
 //         }
 //     });
 // });
-// 
+//
 </script>
 
 <script>

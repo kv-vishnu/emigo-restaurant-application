@@ -13,11 +13,11 @@ class Homemodel extends CI_Model {
         $this->db->join('product_translations pt', 'p.id = pt.product_id');
         $this->db->where('p.id', $product_id);
         $this->db->where('pt.language', $language);
-        
+
         $query = $this->db->get();
         return $query->row_array();
     }
-    
+
     public function getCustomizeProductDefaultPrice($store_product_id,$store_id){
         $this->db->select('rate');
           $this->db->from('store_variants');
@@ -51,17 +51,30 @@ class Homemodel extends CI_Model {
         } else {
             $getType = 'dining_number';
         }
-        
+
         $this->db->select($getType);
         $this->db->from('store');
         $this->db->where('store_id', $store_id);
         $query = $this->db->get();// Useful for debugging
         //exit;
-        
+
         $row = $query->row_array(); // Fetch a single row as an associative array
         return isset($row[$getType]) ? $row[$getType] : null; // Return the value or null if not found
-        
+
     }
+    public function get_currency_symbol_by_store_id($store_id)
+    {
+        $this->db->select('store.store_country,countries.currency');
+        $this->db->from('store');
+        $this->db->join('countries', 'countries.country_id = store.store_country', 'left');
+        $this->db->where('store.store_id', $store_id);
+
+        $query = $this->db->get();
+        $row = $query->row_array();
+
+        return $row ? $row['currency'] : '';
+    }
+
     public function get_prevous_orders($orderno , $store_id){
         $this->db->select('*');
         $this->db->from('order_items');
@@ -71,7 +84,7 @@ class Homemodel extends CI_Model {
         $query = $this->db->get();
         return $query->result_array();
     }
-    
+
      public function getProductName($product_id) {
         $this->db->select('product_id');
 	    $this->db->from('store_wise_product_assign');
@@ -94,11 +107,11 @@ class Homemodel extends CI_Model {
         $this->db->where('store_id', $store_id );
         $this->db->where('is_paid', '0');
         $query = $this->db->get();
-        
+
         $orders = $query->result_array();
         $previousOrders = [];
         $currentOrders = [];
-        
+
         foreach ($orders as $order) {
             $orderData = [
                 'product_id' => $order['product_id'],
@@ -109,19 +122,19 @@ class Homemodel extends CI_Model {
                 'amount' => $order['amount'],
                 'is_reorder' => $order['is_reorder']
             ];
-        
+
             if ($order['is_reorder'] == 0) {
                 $previousOrders[] = $orderData;
             } else {
                 $currentOrders[] = $orderData;
             }
         }
-        
+
         $response = [
             'previous_orders' => $previousOrders,
             'current_orders' => $currentOrders
         ];
-        
+
         return $response;
 
 
@@ -144,7 +157,7 @@ class Homemodel extends CI_Model {
         $query = $this->db->get_where('products', array('id' => $id));
         return $query->row();
     }
-    
+
     public function changeStoreProductStatusInactive($store_id,$is_active){
         $this->db->where('store_id', $store_id);
         $this->db->update('store_wise_product_assign',['is_active' => $is_active]);
@@ -159,7 +172,7 @@ class Homemodel extends CI_Model {
         $this->db->from('products p');
         $this->db->join('product_translations pt', 'p.id = pt.product_id');
         $this->db->where('pt.language', $language);
-        
+
         $query = $this->db->get();
         return $query->result_array(); // Return the result as an array
     }
@@ -168,7 +181,7 @@ class Homemodel extends CI_Model {
         $query = $this->db->get_where('store', array('store_id' => $store_id));
         return $query->row();
     }
-    
+
     public function get_support_details_by_country_id($country_id){
         $this->db->select('support_no,support_email');
         $this->db->from('countries');
@@ -177,7 +190,7 @@ class Homemodel extends CI_Model {
         $result = $query->row();
         return $result;
     }
-    
+
      public function get_store_tax_by_store_id($tax_id){
         $query = $this->db->get_where('tax', array('tax_id' => $tax_id));
         return $query->row();

@@ -50,6 +50,7 @@ class Product extends CI_Controller {
         $this->pagination->initialize($config);
         $page = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
         $all_products = $this->Commonmodel->shopAssignedProductsbyPagination(); //print_r($all_products);
+        $data['currency_symbol'] = $this->Homemodel->get_currency_symbol_by_store_id($logged_store_id);
         $data['products'] = array_slice($all_products, $page, $config['per_page']);
         $data['pagination'] = $this->pagination->create_links();
         $date =date('Y-m-d');

@@ -275,7 +275,14 @@ foreach ($_SESSION['cart'] as $key => $item) {
     }
 
     public function get() {
-        echo json_encode($_SESSION['cart']);
+        $currencty_symbol = $this->Homemodel->get_currency_symbol_by_store_id($this->session->userdata('store_id'));
+        $response = [
+        'currency' => $currencty_symbol,
+        'cart' => $_SESSION['cart'] ?? []
+    ];
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
     }
      public function view() {
 
@@ -296,7 +303,7 @@ foreach ($_SESSION['cart'] as $key => $item) {
               $store_details_from_tokens = $store_details_from_token->store_table_token;
         }else{
             $store_id = $this->session->userdata('store_id');
-             $ttype= $this->session->userdata('ttype');
+            $ttype= $this->session->userdata('ttype');
 
         }
 

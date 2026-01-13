@@ -173,10 +173,12 @@ else if ($delivery_type == 'D' && isset($whatsapp_enable_table['is_whatsapp'])) 
                 <h6 class="user-cart-page__total-label">Total :</h6>
                 <h6 id="current-total" class="user-cart-page__total-count"></h6>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <h6 class="user-cart-page__total-label text-capitalize"><?php echo $tax_infr->tax_type;  ?> :
+                <?php if (!empty($tax_infr) && !empty($tax_infr->tax_type)) : ?>
+                    <h6 class="user-cart-page__total-label text-capitalize"><?php echo $tax_infr->tax_type;  ?> :
                     <!--(<?php echo $tax_infr->tax_rate;  ?> %)-->
-                </h6>
-                <h6 class="user-cart-page__total-count" id="vat-total">000</h6>
+                    </h6>
+                    <h6 class="user-cart-page__total-count" id="vat-total">000</h6>
+                <?php endif; ?>
 
             </div>
 
@@ -741,16 +743,16 @@ $(document).ready(function() {
         $.ajax({
             url: '<?= base_url("cart/get") ?>',
             method: 'GET',
-            success: function(data) {
-                console.log(data);
-                const cartData = JSON.parse(data);
-                displayCart(cartData);
+            dataType: 'json',
+            success: function(response) {
+                console.log(response);
+                displayCart(response.cart, response.currency);
             }
         });
     }
 
     // Display cart items and update total items count and total value
-    function displayCart(cartData) {
+    function displayCart(cartData, currency) {
         $('#cart-items').empty();
         $('#addon-items').empty();
         let totalItems = 0;
@@ -809,7 +811,7 @@ $(document).ready(function() {
 
         $('#total-items').text(total + ' Items Added' + ' ₹' + cartTotal.toFixed(2));
 
-        // alert(cartTotal.toFixed(2));
+        //alert(vatPercentage);
 
         if ($('#order_no').val() != '') {
             $('#current-total').text(cartTotal.toFixed(2));

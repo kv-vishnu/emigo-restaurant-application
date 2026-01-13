@@ -210,7 +210,7 @@
                                                 <option value="">Select role</option>
                                                 <option value="2" <?= set_select('role', '2') ?>>Shop Owner</option>
                                                 <!-- <option value="3" <?= set_select('role', '3') ?>>Employee</option> -->
-                                                <option value="4" <?= set_select('role', '4') ?>>Delivery Boy</option>
+                                                <!-- <option value="4" <?= set_select('role', '4') ?>>Delivery Boy</option> -->
                                                 <option value="5" <?= set_select('role', '5') ?>>Supplier</option>
                                                 <option value="6" <?= set_select('role', '6') ?>>Kitchen</option>
                                             </select>
