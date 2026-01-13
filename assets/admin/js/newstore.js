@@ -173,7 +173,7 @@
     $('#country_id').change(function () {
         var country_id = $(this).val();
 
-        // alert(country_id);
+        alert(country_id);
         $.ajax({
             method: "POST",
             url: base_url + 'admin/Newstore/getTaxRates',
@@ -192,7 +192,7 @@
         {
             var taxRate = $(this).val();
             var dataType = $(this).find('option:selected').data('type');
-            // alert(dataType);
+            alert(dataType);
 
             if(dataType == 'vat'){
                $('#Tax_label').text('VAT Number');
