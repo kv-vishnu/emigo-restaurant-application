@@ -461,7 +461,8 @@ $(document).ready(function () {
             });
     });
     //MARK: - Enable Row Item
-    $(".enable_item").click(function (e) {
+    $(document).on('click', '.enable_item', function () {
+        //alert(1);
         var id = $(this).attr('data-id');
         var type = $(this).attr('data-type');
         if( type == 'category')
@@ -480,7 +481,8 @@ $(document).ready(function () {
         );
     });
     //MARK: - Disable Row Item
-    $(".disable_item").click(function (e) {
+     $(document).on('click', '.disable_item', function () {
+        //alert(1);
         var id = $(this).attr('data-id');
         var type = $(this).attr('data-type');
         if( type == 'category')
@@ -815,20 +817,21 @@ $(document).ready(function () {
         });
     });
 
-    //MARK: -Save Assignments
-    $('#saveAssignments').click(function() {
-        alert(2);
-        var store_id = $("#store_id").val();
-        var selected = [];
-        $('#product_list input[name="product_ids[]"]:checked').each(function() {
-            selected.push($(this).val());
-        });
+    // //MARK: -Save Assignments
+    // $('#saveAssignments').click(function() {
+    //     alert(2);
+    //     var store_id = $("#store_id").val();
+    //     var selected = [];
+    //     $('#product_list input[name="product_ids[]"]:checked').each(function() {
+    //         selected.push($(this).val());
+    //     });
 
-        $.post(base_url + "admin/Product_assign/save", {store_id: store_id, product_ids: selected}, function(res) {
-            var data = JSON.parse(res);
-            alert(data.message);
-        });
-    });
+    //     $.post(base_url + "admin/Product_assign/save", {store_id: store_id, product_ids: selected}, function(res) {
+    //         var data = JSON.parse(res);
+    //         //alert('ss');
+    //         showPopupAlert('success', data.message , true);
+    //     });
+    // });
 
 
 

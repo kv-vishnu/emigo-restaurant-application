@@ -39,6 +39,7 @@ $(document).ready(function() {
         $.post(base_url + "admin/Product_assign/save", {store_id: store_id, product_ids: selected , category_id:category_id }, function(res) {
             var data = JSON.parse(res);
             alert(data.message);
+            $('#emp_informations').modal('hide');
         });
     });
 });

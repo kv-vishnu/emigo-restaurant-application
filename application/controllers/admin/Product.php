@@ -466,17 +466,37 @@ public function searchProductOnadminKeyUp(){
         foreach ($searchproducts as $val) {
             $image = base_url() . 'uploads/product/' . ($val->image1 ?? '');
 
+            // Status button logic
+            if ($val->is_active == 1) {
+                $statusBtn = '
+                    <button class="btn btn-sm btn-danger toggle-status disable_item"
+                        data-id="'.$val->product_id.'"
+                        data-type="product"
+                        data-status="0">
+                        Disable
+                    </button>';
+            } else {
+                $statusBtn = '
+                    <button class="btn btn-sm btn-success toggle-status enable_item"
+                        data-id="'.$val->product_id.'"
+                        data-type="product"
+                        data-status="1">
+                        Enable
+                    </button>';
+            }
+
             $html .= "
 
              <tr>
      <td>{$count}</td>
      <td>{$val->product_name_en}</td>
       <td>{$this->Productmodel->getCategoryName($val->category_id)}</td>
-     <td><img width='100' height='100' src='{$image}' class='img-thumbnail'></td>
-     <td class='pb-0 pt-0 d-flex'>
+     <td><img width='50' height='50' src='{$image}' class='img-thumbnail'></td>
+     <td>{$statusBtn}</td>
+     <td class='pb-0 pt-0 d-flex' height='85px;'>
          <input type='hidden' name='id' value='{$val->product_id}'>
          <button class='btn tblEditBtn edit_product pl-0 pr-0' type='button' data-bs-toggle='modal' data-id='{$val->product_id}' data-bs-target='#edit-product'><i class='fa fa-edit'></i></button>
-         <a class='btn tblDelBtn pl-0 pr-0 del_product' type='button' data-id='{$val->product_id}' data-bs-toggle='modal' data-bs-target='#delete-product'><i class='fa fa-trash'></i></a>
+         <a class='btn tblDelBtn pl-0 pr-0 del_product d-none' type='button' data-id='{$val->product_id}' data-bs-toggle='modal' data-bs-target='#delete-product'><i class='fa fa-trash'></i></a>
      </td>
  </tr>
             ";

@@ -76,7 +76,7 @@
                 <td><?php echo $count;?></td>
                  <td><?php echo $val['product_name_en'];?></td>
                  <td><?php echo $val['category_name_en'];?></td>
-                 <td><img width="100" height="100" src="<?php echo base_url(); ?>uploads/product/<?php if(isset($val['image1'])) echo $val['image1']; ?>" class="img-thumbnail"></td>
+                 <td><img width="50" height="50" src="<?php echo base_url(); ?>uploads/product/<?php if(isset($val['image1'])) echo $val['image1']; ?>" class="img-thumbnail"></td>
                 <td>
                                         <?php if ($val['is_active'] == 1) { ?>
                                             <button class="btn btn-sm btn-danger toggle-status disable_item"
@@ -94,7 +94,7 @@
                                             </button>
                                         <?php } ?>
                                     </td>
-                <td class="pb-0 pt-0 d-flex">
+                <td class="pb-0 pt-0 d-flex" style="height: 85px;">
                                       <input type="hidden" name="id" value="<?php echo $val['product_id']; ?>">
                                         <button class="btn tblEditBtn edit_product pl-0 pr-0" type="submit" data-bs-toggle="modal" data-id="<?php echo $val['product_id']; ?>" data-bs-original-title="Edit Product" data-bs-target="#edit-product"><i class="fa fa-edit"></i></button>
                     <!-- <a class="btn tblDelBtn pl-0 pr-0 del_product" type="button" data-bs-toggle="modal" data-id="<?php echo $val['product_id']; ?>" data-bs-original-title="Delete Product" data-bs-target="#delete-product"><i class="fa fa-trash"></i></a> -->
