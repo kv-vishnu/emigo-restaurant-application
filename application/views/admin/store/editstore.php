@@ -430,7 +430,7 @@
 
 <!-- username  -->
 
-                        <div class="form__field-container-group gc" id="product_rate_div">
+                        <div class="form__field-container-group gc" id="product_rate_div" style="display:none;">
                             <div class="form__field-container xs12 lg3">
                                 <label class="form__label">Username (Shop owner)</label>
                                 <input class="form-control" type="text" name="username" id="username">

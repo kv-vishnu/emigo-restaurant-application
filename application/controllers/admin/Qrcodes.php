@@ -112,12 +112,12 @@ class Qrcodes extends CI_Controller {
 
 	/* 🔹 Delivery QR */
 	$deliveryQr = [
-		'dl_qr_url'    => base_url('admin/qrcode/generateDeliveryQrCode1/'.$storeID)
+		'qr_url'    => base_url('admin/qrcode/generateDeliveryQrCode1/'.$storeID)
 	];
 
 	/* 🔹 Pickup QR */
 	$pickupQr = [
-		'pk_qr_url'    => base_url('admin/qrcode/generatePickupQrCode1/'.$storeID)
+		'qr_url'    => base_url('admin/qrcode/generatePickupQrCode/'.$storeID)
 	];
 
 	/* 🔹 Merge everything */
