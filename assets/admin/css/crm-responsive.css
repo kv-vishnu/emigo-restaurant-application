@@ -416,10 +416,10 @@ td.icon-cell {
   }
 
   .qr-card img {
-    position: absolute;
-    top: 190px;
-    width: 196px;
-    left: 97px;
+        position: absolute;
+        top: 207px;
+        width: 234px;
+        left: 97px;
   }
 
   .qr-card span {

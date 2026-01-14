@@ -36,10 +36,19 @@ class Tablemodel extends CI_Model {
 		$this->db->from('store_table');
 		$this->db->where('store_id',$store_id );
 		$this->db->where('ttype', 'tbl');
-		//$this->db->where('store_table_token', '');
 		$this->db->order_by("table_id", "asc");
 		$query = $this->db->get();
-		//echo $this->db->last_query();exit;
+		return $query->result_array();
+	}
+
+	public function getRoomsByStoreId($store_id)
+	{
+		$this->db->select('*');
+		$this->db->from('store_table');
+		$this->db->where('store_id',$store_id );
+		$this->db->where('ttype', 'rom');
+		$this->db->order_by("table_id", "asc");
+		$query = $this->db->get();
 		return $query->result_array();
 	}
 

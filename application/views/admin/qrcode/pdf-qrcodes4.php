@@ -82,29 +82,37 @@ body {
 </style>
 
 <div class="print-area">
-    <?php if (!empty($tableQrCodes)) { ?>
-    <?php foreach ($tableQrCodes as $index => $qrcode) { ?>
-    <div class="card">
-        <img src="<?php echo base_url(); ?>uploads/qrbg.jpg" class="card-img-top" alt="QR Background">
-        <div class="qr-card">
-            <img src="<?php echo $qrcode['qr_code']; ?>" alt="QR Code">
-        </div>
-        <h5 class="card-title">
-    <?php 
-        $table_display = !empty($qrcode['store_table_name']) ? $qrcode['store_table_name'] : $qrcode['table_name'];
-        echo htmlspecialchars($table_display);
-    ?>
-</h5>
+<?php if (!empty($qrCodes)) { ?>
+    <?php foreach ($qrCodes as $index => $qrcode) { ?>
+        <?php if (!empty($qrcode['qr_code'])) { ?>
+            <div class="card">
+                <img src="<?php echo base_url(); ?>uploads/qrbg.jpg" class="card-img-top">
 
-    </div>
-    <?php if (($index + 1) % 2 == 0) { ?>
-    <div class="clearfix"></div> <!-- Clear floats after every 2 cards -->
+                <div class="qr-card">
+                    <img src="<?php echo $qrcode['qr_code']; ?>">
+                </div>
+
+                <h5 class="card-title">
+                    <?php
+                        echo htmlspecialchars(
+                            !empty($qrcode['store_table_name'])
+                            ? $qrcode['store_table_name']
+                            : $qrcode['table_name']
+                        );
+                    ?>
+                </h5>
+            </div>
+
+            <?php if (($index + 1) % 2 == 0) { ?>
+                <div class="clearfix"></div>
+            <?php } ?>
+
+            <?php if (($index + 1) % 4 == 0) { ?>
+                <div style="page-break-after: always;"></div>
+            <?php } ?>
+        <?php } ?>
     <?php } ?>
-    <?php if (($index + 1) % 4 == 0) { ?>
-    <div style="page-break-after: always;"></div> <!-- Add page break after every 4 cards -->
-    <?php } ?>
-    <?php } ?>
-    <?php } else { ?>
+<?php } else { ?>
     <p>No QR codes available.</p>
-    <?php } ?>
+<?php } ?>
 </div>

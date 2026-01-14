@@ -92,6 +92,10 @@ class Qrcodes extends CI_Controller {
 		//$store_id =  $this->input->post('store_id_hidden');
 		$data['storeId'] = $storeID;
 		$data['tableQrCodes'] = $this->Tablemodel->getTablesByStoreId($storeID);
+		$data['roomQrCodes'] = $this->Tablemodel->getRoomsByStoreId($storeID);
+		$data['pickupQr'] = base_url('admin/qrcodes/generatePickupQrCode1/'.$storeID);
+		$data['deliveryQr'] = base_url('admin/qrcodes/generateDeliveryQrCode1/'.$storeID);
+
 		$this->load->view('admin/header',$data);
 		$this->load->view('admin/qrcode/listqrcodes',$data);
 		$this->load->view('admin/footer',$data);
@@ -103,11 +107,29 @@ class Qrcodes extends CI_Controller {
     $dompdf = new Dompdf();
 
     // Load data for the PDF
-    $data['tableQrCodes'] = $this->Tablemodel->getTablesByStoreId($storeID);
-	// print_r($data['tableQrCodes']);exit;
+    $tableQrCodes = $this->Tablemodel->getTablesByStoreId($storeID);
+	$roomQrCodes  = $this->Tablemodel->getRoomsByStoreId($storeID);
 
-    // Generate HTML content
-    $html = $this->load->view('admin/qrcode/pdf-qrcodes4', $data, true);
+	/* 🔹 Delivery QR */
+	$deliveryQr = [
+		'dl_qr_url'    => base_url('admin/qrcode/generateDeliveryQrCode1/'.$storeID)
+	];
+
+	/* 🔹 Pickup QR */
+	$pickupQr = [
+		'pk_qr_url'    => base_url('admin/qrcode/generatePickupQrCode1/'.$storeID)
+	];
+
+	/* 🔹 Merge everything */
+	$data['qrCodes'] = array_merge(
+		[$deliveryQr, $pickupQr],
+		$tableQrCodes ?? [],
+		$roomQrCodes ?? []
+	);
+
+	/* Generate HTML */
+	$html = $this->load->view('admin/qrcode/pdf-qrcodes4', $data, true);
+
 
     // Ensure images use absolute paths or URLs
     $html = str_replace('src="uploads/qr_codes/', 'src="' . base_url('uploads/qr_codes/'), $html);
