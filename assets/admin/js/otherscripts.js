@@ -1992,9 +1992,14 @@ $(document).on('click', '.edit_product', function () {
             isValid = false;
         }
 
-        const phonePattern = /^\d{10}$/;
-        if (!phonePattern.test($('#phone').val().trim())) {
-            $('#phone_error').text('Enter valid 10-digit phone number.');
+        // const phonePattern = /^\d{10}$/;
+        // if (!phonePattern.test($('#phone').val().trim())) {
+        //     $('#phone_error').text('Enter valid 10-digit phone number.');
+        //     isValid = false;
+        // }
+
+        if ($('#phone').val().trim() === '') {
+            $('#phone_error').text('Enter phone number');
             isValid = false;
         }
 

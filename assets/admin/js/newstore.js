@@ -35,11 +35,16 @@
             isValid = false;
         }
 
-        const phonePattern = /^\d{10}$/;
-        if (!phonePattern.test($('#phone').val().trim())) {
-            $('#phone_error').text('Enter a valid 10-digit phone number.');
+        if ($('#phone').val().trim() === '') {
+            $('#phone_error').text('Enter phone number');
             isValid = false;
         }
+
+        // const phonePattern = /^\d{10}$/;
+        // if (!phonePattern.test($('#phone').val().trim())) {
+        //     $('#phone_error').text('Enter a valid 10-digit phone number.');
+        //     isValid = false;
+        // }
 
         if ($('#address').val().trim() === '') {
             $('#address_error').text('Enter address');
