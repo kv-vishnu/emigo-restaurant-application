@@ -236,7 +236,7 @@
                             <!-- Contract End Date -->
 
                             <div class="form__field-container xs12 lg2">
-                                <label class="form__label">Contract End Date ff</label>
+                                <label class="form__label">Contract End Date</label>
                                 <input type="text"
                                     value="<?php if(set_value('contract_end_date')){echo set_value('contract_end_date');}else if(isset($storeDet[0]['contract_end_date'])){echo $storeDet[0]['contract_end_date'];}?>"
                                     class="form-control" id="datepicker1" name="contract_end_date"
@@ -430,7 +430,7 @@
 
 <!-- username  -->
 
-                        <div class="form__field-container-group gc" id="product_rate_div" style="display:none;">
+                        <div class="form__field-container-group gc" id="product_rate_div">
                             <div class="form__field-container xs12 lg3">
                                 <label class="form__label">Username (Shop owner)</label>
                                 <input class="form-control" type="text" name="username" id="username">
