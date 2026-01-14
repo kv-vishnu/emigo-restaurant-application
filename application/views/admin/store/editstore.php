@@ -236,7 +236,7 @@
                             <!-- Contract End Date -->
 
                             <div class="form__field-container xs12 lg2">
-                                <label class="form__label">Contract End Date</label>
+                                <label class="form__label">Contract End Date ff</label>
                                 <input type="text"
                                     value="<?php if(set_value('contract_end_date')){echo set_value('contract_end_date');}else if(isset($storeDet[0]['contract_end_date'])){echo $storeDet[0]['contract_end_date'];}?>"
                                     class="form-control" id="datepicker1" name="contract_end_date"

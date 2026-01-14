@@ -179,8 +179,7 @@
             url: base_url + 'admin/Newstore/getTaxRates',
             data: { 'country_id': country_id },
             success: function (data) {
-                console.log(data);
-
+                //console.log(data);
                 $('#sel_gst_or_tax').html(data);
             }
         });
@@ -211,7 +210,8 @@
 
 
      //5. Datepicker contract start end followup dates
-    $('#datepicker').datepicker({
+
+    $('#datepicker,#datepicker1,#datepicker2').datepicker({
         format: 'yyyy-mm-dd',
         startDate: new Date(), // Set minimum date if needed
         endDate: '+364d' // Set maximum date to 365 days in the future

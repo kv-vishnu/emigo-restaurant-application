@@ -2193,7 +2193,7 @@ $(document).on('click', '.edit_product', function () {
 
 
     //MARK: - Datepicker contract Date
-    $('#datepicker').datepicker({
+    $('#datepicker,#datepicker1,#datepicker2').datepicker({
         format: 'yyyy-mm-dd',
         startDate: new Date(), // Set minimum date if needed
         endDate: '+364d' // Set maximum date to 365 days in the future
