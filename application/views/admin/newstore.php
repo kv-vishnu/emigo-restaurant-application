@@ -327,42 +327,41 @@
 
                             <!-- username (shop owner)  -->
 
-                            <!-- <div class="form__field-container-group gc" id="product_rate_div">
+                             <div class="form__field-container-group gc" id="product_rate_div">
                                 <div class="form__field-container xs12 lg3">
                                     <label class="form__label">Username (Shop owner)</label>
                                     <input class="form-control" type="text" name="username" id="username">
                                     <div class="errormsg mt-2" id="error_username"></div>
 
-                                </div> -->
+                                </div>
 
                                 <!-- Password  -->
 
-                                <!-- <div class="form__field-container xs12 lg3">
+                                 <div class="form__field-container xs12 lg3">
                                     <label class="form__label">password</label>
                                     <input class="form-control" type="password" name="password" id="password">
                                     <div class="errormsg mt-2" id="error_password"></div>
 
-                                </div> -->
-
+                                </div>
                                 <!-- username (user)  -->
 
-                                <!-- <div class="form__field-container xs12 lg3">
+                                 <div class="form__field-container xs12 lg3">
                                     <label class="form__label">Username (user)</label>
                                     <input class="form-control" type="text" name="user_username" id="user_username">
                                     <div class="errormsg mt-2" id="error_user_username"></div>
 
-                                </div> -->
+                                </div>
 
 
                                 <!-- Password  -->
 
-                                <!-- <div class="form__field-container xs12 lg3">
+                                <div class="form__field-container xs12 lg3">
                                     <label class="form__label">password</label>
                                     <input class="form-control" type="password" name="user_password" id="user_password">
                                     <div class="errormsg mt-2" id="error_user_password"></div>
 
-                                </div> -->
-                            <!-- </div> -->
+                                </div>
+                            </div>
 
 
                             <!-- Store Logo  -->

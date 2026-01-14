@@ -141,6 +141,34 @@ class Newstore extends CI_Controller {
                     );
                     $this->Storemodel->insert_store_table($data);
                 }
+
+                $data = array(
+						'userroleid' => 2,
+						'store_id' => $last_insert_store_id,
+						'Name' => $this->input->post('name'),
+						'userEmail' => $this->input->post('email'),
+						'userName' => $this->input->post('username'),
+						'userPassword' => md5(trim($this->input->post('password'))),
+						'userPhoneNumber' => $this->input->post('phone'),
+						'userAddress' => $this->input->post('address'),
+						'profileimg' => '',
+						'is_active' => 1,
+			        );
+					$this->Usermodel->insert($data);
+
+					$data = array(
+						'userroleid' => 2,
+						'store_id' => $last_insert_store_id,
+						'Name' => $this->input->post('name'),
+						'userEmail' => $this->input->post('email'),
+						'userName' => $this->input->post('user_username'),
+						'userPassword' => md5(trim($this->input->post('user_password'))),
+						'userPhoneNumber' => $this->input->post('phone'),
+						'userAddress' => $this->input->post('address'),
+						'profileimg' => '',
+						'is_active' => 1,
+			        );
+					$this->Usermodel->insert($data);
         }
     }
 

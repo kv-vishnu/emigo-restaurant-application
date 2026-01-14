@@ -315,8 +315,6 @@
                                 <div class="errormsg mt-2" id="error_user_password"></div>
 
                             </div>
-
-
                         </div>
 
 
