@@ -191,7 +191,7 @@
         {
             var taxRate = $(this).val();
             var dataType = $(this).find('option:selected').data('type');
-            alert(dataType);
+            //alert(dataType);
 
             if(dataType == 'vat'){
                $('#Tax_label').text('VAT Number');
