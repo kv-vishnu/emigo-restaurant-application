@@ -106,9 +106,9 @@
                     <tr>
                         <th>No</th>
                         <th>Name</th>
-                        <th>Is Whatsapp</th>
-                        <th>Whatsapp Number</th>
-                        <!-- <th>Status Update</th> -->
+                        <!-- <th>Is Whatsapp</th>
+                        <th>Whatsapp Number</th> -->
+
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -124,7 +124,7 @@
                             <input type="hidden" class="form-control" id="current_table_name_hidden"
                                 name="current_table_name_hidden" value="<?php echo $val['table_name'];?>">
                         </td>
-                        <td><input type="checkbox" class="form-check-input customCheck1"
+                        <!-- <td><input type="checkbox" class="form-check-input customCheck1"
                                 value="<?php  echo $val['is_whatsapp'];?>"
                                 data-storeid="<?php echo $storeDet[0]['store_id']; ?>"
                                 data-tablename="<?php echo $val['table_id'] ;?>"
@@ -140,7 +140,7 @@
 
                                 <?php } ?>
                             </select>
-                        </td>
+                        </td> -->
                         <!-- <td><button class="btn btn-success w-md" id="updateStatus" type="submit" name="add">Update</button></td> -->
 
                         <td class="pb-0 pt-0 d-flex">
@@ -182,14 +182,14 @@
                     <?php $count++; }} ?>
 
                     <?php if (!empty($storeDet)) {
-    $count = 1;
+
     foreach ($storeDet as $store) { ?>
 
                     <!-- Delivery Row -->
                     <tr class="table-row">
                         <td><?php echo $count++; ?></td>
                         <td class="fw-bold">Delivery</td>
-                        <td>
+                        <!-- <td>
                             <input type="checkbox" class="form-check-input customCheck1"
                                 value="<?php echo $store['delivery_whatsapp_enable'] ?? 0; ?>"
                                 data-storeid="<?php echo $store['store_id']; ?>" data-tablename="Delivery"
@@ -209,7 +209,7 @@
 
                                 <?php } ?>
                             </select>
-                        </td>
+                        </td> -->
                         <td>
                             <a class="btn tblDelBtn pl-0 pr-0 del_table" type="button"><i class="fa fa-trash"></i></a>
                             <a href="<?php echo base_url(); ?>admin/qrcodes/generateDeliveryQrCode1/<?php echo $store['store_id']; ?>"
@@ -221,7 +221,7 @@
                     <tr class="table-row">
                         <td><?php echo $count++; ?></td>
                         <td class="fw-bold">Pickup</td>
-                        <td>
+                        <!-- <td>
                             <input type="checkbox" class="form-check-input customCheck1"
                                 value="<?php echo $store['pickup_whatsapp_enable'] ?? 0; ?>"
                                 data-storeid="<?php echo $store['store_id']; ?>" data-tablename="Pickup"
@@ -239,7 +239,7 @@
 
                                 <?php } ?>
                             </select>
-                        </td>
+                        </td> -->
                         <td>
                             <a class="btn tblDelBtn pl-0 pr-0 del_table" type="button"><i class="fa fa-trash"></i></a>
                             <a href="<?php echo base_url(); ?>admin/qrcodes/generatePickupQRCode1/<?php echo $store['store_id']; ?>"

@@ -105,7 +105,7 @@
            class="add-new-dish-btn btn1" target="_blank" style="height:2rem;">
            <i class="fa fa-qrcode" style="font-size: 10px;"></i>
 
-            Download Table QR PDF
+            Download ALL QR PDF
         </a>
     </div>
 
