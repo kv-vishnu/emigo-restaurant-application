@@ -98,6 +98,36 @@ Class Commonmodel extends CI_Model
         }
         return false;
     }
+    //MARK: - Approve Users
+    public function approve_users($id)
+    {
+        $data = array('is_active' => 1);
+        $this->db->where('store_id', $id);
+        if ($this->db->update('users', $data)) {
+            return true;
+        }
+        return false;
+    }
+    //MARK: - Disable Users
+    public function disable_users($id)
+    {
+        $data = array('is_active' => 0);
+        $this->db->where('store_id', $id);
+        if ($this->db->update('users', $data)) {
+            return true;
+        }
+        return false;
+    }
+    //MARK: - Enable Users
+    public function enable_users($id)
+    {
+        $data = array('is_active' => 1);
+        $this->db->where('store_id', $id);
+        if ($this->db->update('users', $data)) {
+            return true;
+        }
+        return false;
+    }
     //MARK: - Disable Record
     public function disable_record($table, $status_field, $where, $value = 0)
     {

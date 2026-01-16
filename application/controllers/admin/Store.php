@@ -110,6 +110,7 @@ class Store extends My_Controller {
         $id=$this->input->post('id');
         $this->Commonmodel->approve_record('store','is_approve',['store_id' => $id]);
         $this->Commonmodel->approve_record('users','is_active',['userid' => $id]);
+		$this->Commonmodel->approve_users($id);
 		$this->create_login_qr_code($id);
     }
 	public function create_login_qr_code($id)
@@ -139,6 +140,7 @@ class Store extends My_Controller {
 		$type   = $this->input->post('type'); // 'store' or 'product'
 		if ($type == 'store') {
 			$this->Commonmodel->disable_record('store', 'is_active', ['store_id' => $id]);
+			$this->Commonmodel->disable_users($id);
 		} elseif ($type == 'product') {
 			$this->Commonmodel->disable_record('products', 'is_active', ['product_id' => $id]);
 		}
@@ -152,6 +154,7 @@ class Store extends My_Controller {
 		$type   = $this->input->post('type'); // 'store' or 'product'
 		if ($type == 'store') {
 			$this->Commonmodel->enable_record('store', 'is_active', ['store_id' => $id]);
+			$this->Commonmodel->enable_users($id);
 		} elseif ($type == 'product') {
 			$this->Commonmodel->enable_record('products', 'is_active', ['product_id' => $id]);
 		}

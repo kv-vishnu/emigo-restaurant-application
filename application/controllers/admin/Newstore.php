@@ -152,7 +152,7 @@ class Newstore extends CI_Controller {
 						'userPhoneNumber' => $this->input->post('phone'),
 						'userAddress' => $this->input->post('address'),
 						'profileimg' => '',
-						'is_active' => 1,
+						'is_active' => 0,
 			        );
 					$this->Usermodel->insert($data);
 
@@ -166,7 +166,7 @@ class Newstore extends CI_Controller {
 						'userPhoneNumber' => $this->input->post('phone'),
 						'userAddress' => $this->input->post('address'),
 						'profileimg' => '',
-						'is_active' => 1,
+						'is_active' => 0,
 			        );
 					$this->Usermodel->insert($data);
         }

@@ -2,7 +2,7 @@
 //MARK: - Import
  $(document).ready(function () {
 
-    //    var base_url = 'http://localhost/emigo-restaurant-application/';
+    //var base_url = 'http://localhost/emigo-restaurant-application/';
     var base_url = 'https://qr-experts.com/emigo-restaurant-application/';
 
     //MARK: -  Add Store
