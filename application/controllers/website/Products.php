@@ -611,6 +611,9 @@ class Products extends CI_Controller {
         $store_id = $store_details_from_token->store_id; //echo $store_id;exit; //Get store id
         $secret_code = $store_details_from_token->secret_code; //Table secret code
         $deliverytype= $store_details_from_token->ttype;
+        $is_active_store= $store_details_from_token->is_active;
+
+
 
         if ($deliverytype == 'tbl')
         {
@@ -654,6 +657,11 @@ class Products extends CI_Controller {
         $cartData = $this->session->userdata('cart');
         $data['cartItems'] = $cartData; //print_r($data['cartItems']);
         //$data['allproducts'] = $this->Productmodel->getAllProductsByStore($store_id);//print_r($data['allproducts']);exit;
+
+        if ((int)$is_active_store === 0) {
+            $this->load->view('website/store_closed');
+            return;
+        }
 
         $this->load->view('website/header', $data); //This is category wised data display
         $this->load->view('website/products_all', $data); //This is all products display

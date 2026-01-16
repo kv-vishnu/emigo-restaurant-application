@@ -140,7 +140,7 @@ class Store extends My_Controller {
 		$type   = $this->input->post('type'); // 'store' or 'product'
 		if ($type == 'store') {
 			$this->Commonmodel->disable_record('store', 'is_active', ['store_id' => $id]);
-			$this->Commonmodel->disable_users($id);
+			$this->Commonmodel->disable_users_and_tables($id);
 		} elseif ($type == 'product') {
 			$this->Commonmodel->disable_record('products', 'is_active', ['product_id' => $id]);
 		}
@@ -154,7 +154,7 @@ class Store extends My_Controller {
 		$type   = $this->input->post('type'); // 'store' or 'product'
 		if ($type == 'store') {
 			$this->Commonmodel->enable_record('store', 'is_active', ['store_id' => $id]);
-			$this->Commonmodel->enable_users($id);
+			$this->Commonmodel->enable_users_and_tables($id);
 		} elseif ($type == 'product') {
 			$this->Commonmodel->enable_record('products', 'is_active', ['product_id' => $id]);
 		}

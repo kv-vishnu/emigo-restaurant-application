@@ -109,24 +109,38 @@ Class Commonmodel extends CI_Model
         return false;
     }
     //MARK: - Disable Users
-    public function disable_users($id)
+    public function disable_users_and_tables($store_id)
     {
-        $data = array('is_active' => 0);
-        $this->db->where('store_id', $id);
-        if ($this->db->update('users', $data)) {
-            return true;
-        }
-        return false;
+        $this->db->trans_start();
+
+        // Update users
+        $this->db->where('store_id', $store_id);
+        $this->db->update('users', ['is_active' => 0]);
+
+        // Update tables
+        $this->db->where('store_id', $store_id);
+        $this->db->update('store_table', ['is_active' => 0]);
+
+        $this->db->trans_complete();
+
+        return $this->db->trans_status();
     }
     //MARK: - Enable Users
-    public function enable_users($id)
+    public function enable_users_and_tables($store_id)
     {
-        $data = array('is_active' => 1);
-        $this->db->where('store_id', $id);
-        if ($this->db->update('users', $data)) {
-            return true;
-        }
-        return false;
+        $this->db->trans_start();
+
+        // Update users
+        $this->db->where('store_id', $store_id);
+        $this->db->update('users', ['is_active' => 1]);
+
+        // Update tables
+        $this->db->where('store_id', $store_id);
+        $this->db->update('store_table', ['is_active' => 1]);
+
+        $this->db->trans_complete();
+
+        return $this->db->trans_status();
     }
     //MARK: - Disable Record
     public function disable_record($table, $status_field, $where, $value = 0)
