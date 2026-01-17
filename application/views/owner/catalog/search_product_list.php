@@ -11,7 +11,7 @@
             }
 
             /* ---------- IMAGE SAFE CHECK ---------- */
-            $defaultImage = base_url('uploads/product/product-no-image.jpg');
+            $defaultImage = base_url('default-image/product-no-image.jpg');
             $imagePath   = FCPATH . 'uploads/product/';
             $imageUrl    = base_url('uploads/product/');
 
