@@ -40,12 +40,27 @@
             <div class="product-list__item">
                 <div class="product-list__item-image-and-details">
                    <?php
-                        $storeImage = !empty($val['store_image']) ? $val['store_image'] : 'product-no-image.jpg';
-                        $path = site_url("uploads/product/" . ($storeImage));
-                        $product_name =  ($val['store_product_name_en'] != '') ? $val['store_product_name_en'] : $val['product_name_en'];
-                    ?>
-                    <img src="<?php echo $path; ?>" alt="<?= $product_name ?>" class="product-list__item-img" width="190"
-                        height="150">
+                        $defaultImage = base_url('default-image/product-no-image.jpg');
+                        $imagePath   = FCPATH . 'uploads/product/';
+                        $imageUrl    = base_url('uploads/product/');
+
+                        $product_name = !empty($val['store_product_name_en'])
+                            ? $val['store_product_name_en']
+                            : $val['product_name_en'];
+
+                        $image = $defaultImage;
+
+                        if (!empty($val['store_image']) && file_exists($imagePath . $val['store_image'])) {
+                            $image = $imageUrl . $val['store_image'];
+                        }
+                        ?>
+
+                        <img src="<?= $image ?>"
+                            alt="<?= htmlspecialchars($product_name, ENT_QUOTES) ?>"
+                            class="product-list__item-img"
+                            width="190"
+                            height="150">
+
                     <div class="product-list__item-details">
                         <h3 class="product-list__item-name">
                         <?= $product_name ?>
