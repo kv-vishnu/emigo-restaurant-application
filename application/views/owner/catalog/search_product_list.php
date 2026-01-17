@@ -10,9 +10,16 @@
                 $product_rate = $this->Ordermodel->getCustomizeProductDefaultPriceOnSearch($product->store_product_id, $store_id);
             }
 
-            $path = !empty($product->image)
-                ? site_url("uploads/product/" . $product->image)
-                : site_url("uploads/product/product-no-image.jpg");
+            /* ---------- IMAGE SAFE CHECK ---------- */
+            $defaultImage = base_url('uploads/product/product-no-image.jpg');
+            $imagePath   = FCPATH . 'uploads/product/';
+            $imageUrl    = base_url('uploads/product/');
+
+            $image = $defaultImage;
+
+            if (!empty($product->image) && file_exists($imagePath . $product->image)) {
+                $image = $imageUrl . $product->image;
+            }
 
             if ($product->category_id == 23) continue;
 
@@ -24,7 +31,7 @@
 
         <div class="product-list__item">
             <div class="product-list__item-image-and-details">
-                <img src="<?= $path; ?>" alt="<?= $product_name; ?>"
+                <img src="<?= $image; ?>" alt="<?= $product_name; ?>"
                      class="product-list__item-img" width="190" height="150">
 
                 <div class="product-list__item-details">
