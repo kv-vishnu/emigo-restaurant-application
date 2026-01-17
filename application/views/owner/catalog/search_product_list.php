@@ -12,7 +12,7 @@
 
             $path = !empty($product->image)
                 ? site_url("uploads/product/" . $product->image)
-                : site_url("uploads/product/" . $product->store_image);
+                : site_url("uploads/product/product-no-image.jpg");
 
             if ($product->category_id == 23) continue;
 

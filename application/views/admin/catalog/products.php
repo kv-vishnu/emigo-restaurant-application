@@ -76,7 +76,13 @@
                 <td><?php echo $count;?></td>
                  <td><?php echo $val['product_name_en'];?></td>
                  <td><?php echo $val['category_name_en'];?></td>
-                 <td><img width="50" height="50" src="<?php echo base_url(); ?>uploads/product/<?php if(isset($val['image1'])) echo $val['image1']; ?>" class="img-thumbnail"></td>
+                 <td>
+                    <img width="50" height="50"
+                        src="<?php echo !empty($val['image1'])
+                            ? base_url('uploads/product/' . $val['image1'])
+                            : base_url('default-image/product-no-image.jpg'); ?>"
+                        class="img-thumbnail">
+                </td>
                 <td>
                                         <?php if ($val['is_active'] == 1) { ?>
                                             <button class="btn btn-sm btn-danger toggle-status disable_item"

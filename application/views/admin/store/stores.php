@@ -34,8 +34,19 @@
  ?>
             <div class="product-list__item">
                 <div class="product-list__item-image-and-details">
-                    <img src="<?php echo base_url('uploads/store/') . $val['store_logo_image']; ?>" alt="chapathi"
-                        class="product-list__item-img" width="100" height="100">
+                    <?php
+                        $logo = $val['store_logo_image'] ?? '';
+                        $path = 'uploads/store/' . $logo;
+                        $src  = (!empty($logo) && file_exists(FCPATH . $path))
+                                ? base_url($path)
+                                : base_url('default-image/product-no-image.jpg'); // your placeholder
+                        ?>
+
+                        <img src="<?= $src ?>"
+                            alt="Store Logo"
+                            class="product-list__item-img"
+                            width="100" height="100">
+
 
                     <div class="product-list__item-details">
                         <h3 class="product-list__item-name">

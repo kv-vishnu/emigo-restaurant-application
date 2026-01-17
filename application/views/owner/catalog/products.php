@@ -40,7 +40,7 @@
             <div class="product-list__item">
                 <div class="product-list__item-image-and-details">
                    <?php
-                        $storeImage = !empty($val['store_image']) ? $val['store_image'] : 'default.png';
+                        $storeImage = !empty($val['store_image']) ? $val['store_image'] : 'product-no-image.jpg';
                         $path = site_url("uploads/product/" . ($storeImage));
                         $product_name =  ($val['store_product_name_en'] != '') ? $val['store_product_name_en'] : $val['product_name_en'];
                     ?>

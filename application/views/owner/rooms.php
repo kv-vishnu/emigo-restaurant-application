@@ -24,10 +24,10 @@
                 </div>
             </div>
 
-            <div class="bg-light rounded shadow-sm mb-3 p-3 border mt-3">
+            <!-- <div class="bg-light rounded shadow-sm mb-3 p-3 border mt-3">
                 <form class="row mt-0 mb-0" action="" id="addroomsform" method="post">
                     <div class="col-md-4">
-                        <label class="form-label fw-bold">Select Room</label>
+                        <label class="form-label fw-bold">Select Room ff</label>
                         <div class="input-group">
                             <input type="hidden" name="store_id" value="<?php echo $store_id; ?>">
                             <select class="form-select" name="roomselect">
@@ -50,7 +50,7 @@
                         <button class="btn btn1 mt-4" type="button" id="addrooms">Add</button>
                     </div>
                 </form>
-            </div>
+            </div> -->
 
 
         </div>
