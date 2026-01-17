@@ -63,8 +63,8 @@
                                     style="width:100%;">
                             </div>
                             <div class="form__field-container xs12 lg3">
-                                <label class="form__label">Tax</label>
-                                <select class="form__input-select" name="tax" id="tax">
+                                <label class="form__label">Tax </label>
+                                <select class="form__input-select" name="tax" id="tax" disabled>
                                     <option value="0"
                                         <?php echo (isset($default_tax_rate) && $default_tax_rate == 0) ? 'selected' : ''; ?>>
                                         0</option>
@@ -166,7 +166,7 @@
                     </div>
                 </div>
 
-                <button class="btn btn1 mt-2" type="button" id="addNewDish">SAVE PRODUCT</button>
+                <button class="btn btn1 mt-2" type="button" id="addNewDish">SAVE PRODUCT dd</button>
         </div>
 
 
@@ -180,7 +180,7 @@
 
 </div>
 
-
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
 $(document).ready(function() {
     $('#checkbox_is_customizable').on('click', function() {

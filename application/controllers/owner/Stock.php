@@ -17,24 +17,24 @@ class Stock extends CI_Controller {
 	 * So any other public methods not prefixed with an underscore will
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/userguide3/general/urls.html
-	 * 
+	 *
 	 * Check Stock availability - checkStockAvailability()
 	 */
-	
+
 	public function __construct()
 	{
 		parent::__construct();
-		require('Common.php');
+		//require('Common.php');
         $this->load->model('admin/Productmodel');
 		$this->load->model('owner/Ordermodel');
-		if (!$this->session->userdata('login_status')) {
-			redirect(login);
-		}
+		// if (!$this->session->userdata('login_status')) {
+		// 	redirect(login);
+		// }
 	}
 	public function index()
 	{
         $logged_in_store_id = $this->session->userdata('logged_in_store_id');//echo $logged_in_store_id;exit;
-        $data['products']=$this->Productmodel->shopAssignedProducts(); 
+        $data['products']=$this->Productmodel->shopAssignedProducts();
         $data['categories']=$this->Productmodel->listcategories();
 		$this->load->view('owner/includes/header');
 		$this->load->view('owner/stock/stock_entry',$data);
@@ -43,7 +43,7 @@ class Stock extends CI_Controller {
 
     public function report() {
         $logged_in_store_id = $this->session->userdata('logged_in_store_id');//echo $logged_in_store_id;exit;
-        $data['products']=$this->Productmodel->shopAssignedProducts(); 
+        $data['products']=$this->Productmodel->shopAssignedProducts();
         $data['categories']=$this->Productmodel->listcategories();
 		$this->load->view('owner/includes/header');
 		$this->load->view('owner/stock/stock_report',$data);
@@ -57,7 +57,7 @@ class Stock extends CI_Controller {
         $date = $this->input->post('date');
 		if(isset($_POST['update'])){
 			foreach ($products as $key => $order) {
-				 $this->Stockmodel->CheckStockApprove($store_id,$date,$order['store_product_id'],$order['quantity'],$order['minqty'],$order['currentstock']);	
+				 $this->Stockmodel->CheckStockApprove($store_id,$date,$order['store_product_id'],$order['quantity'],$order['minqty'],$order['currentstock']);
 			}
 			//exit;
 		}
@@ -78,11 +78,11 @@ class Stock extends CI_Controller {
 		}
 
 		$accordionHtml = '';
-		
+
 		$accordionHtml = '<form method="post" action="' . base_url('owner/stock/update') . '">
 		<input type="hidden" name="store_id" value="' . $this->session->userdata('logged_in_store_id') . '">
         <input type="hidden" name="date" value="' . $date . '">
-		<div class="table-responsive">  
+		<div class="table-responsive">
 		<table class="table">
             <thead>
                 <tr>
@@ -91,7 +91,7 @@ class Stock extends CI_Controller {
                     <th width="10%">Category</th>
 					<th width="10%">Quantity</th>
 					<th width="10%">Min.Qty</th>
-					<th width="10%">Rate</th>	
+					<th width="10%">Rate</th>
                     <th width="10%">Current Stock</th>
                 </tr>
             </thead>
@@ -110,24 +110,24 @@ class Stock extends CI_Controller {
 					<td><input type="text" readonly class="form-control" style="width: 100%;" name="products[' . $index . '][rate]" value="' . $product['rate'] . '"></td>
 					<input type="hidden" readonly class="form-control" style="width: 100%;" name="products[' . $index . '][currentstock]" value="' . $this->Ordermodel->getCurrentStock($product['store_product_id'] , $date , $this->session->userdata('logged_in_store_id')) . '">
                     <td>' . $this->Ordermodel->getCurrentStock($product['store_product_id'] , $date , $this->session->userdata('logged_in_store_id')) . '</td>
-					
+
                 </tr>';
 		}
 		$accordionHtml .= '</tbody>
 		<tfoot class="table-light">
                 <tr>
-				    
+
                     <td colspan="12">
                         <div class="d-flex justify-content-end">
 							<button class="btn btn-success" name="update" width="100px" style="margin-right: 10px;">update</button>
                         </div>
                     </td>
-					
+
                 </tr>
             </tfoot>
         </table></form>
 		</div>';
-	
+
 		echo $accordionHtml;
     }
 
@@ -144,11 +144,11 @@ class Stock extends CI_Controller {
 		}
 
 		$accordionHtml = '';
-		
+
 		$accordionHtml = '<form method="post" action="' . base_url('owner/stock/update') . '">
 		<input type="hidden" name="store_id" value="' . $this->session->userdata('logged_in_store_id') . '">
         <input type="hidden" name="date" value="' . $date . '">
-		<div class="table-responsive">  
+		<div class="table-responsive">
 		<table class="table">
             <thead>
                 <tr>
@@ -157,7 +157,7 @@ class Stock extends CI_Controller {
                     <th width="10%">Category</th>
 					<th width="10%">Stock Qty</th>
 					<th width="10%">Sale Qty</th>
-                    <th width="10%">Balance Qty</th>	
+                    <th width="10%">Balance Qty</th>
                 </tr>
             </thead>
             <tbody>';
@@ -175,14 +175,14 @@ class Stock extends CI_Controller {
 		$accordionHtml .= '</tbody>
 		<tfoot class="table-light">
                 <tr>
-				    
-                    
-					
+
+
+
                 </tr>
             </tfoot>
         </table></form>
 		</div>';
-	
+
 		echo $accordionHtml;
     }
 
@@ -192,25 +192,24 @@ class Stock extends CI_Controller {
         $quantity = 1;
         $store_id = $this->session->userdata('logged_in_store_id');
         $stock = $this->Ordermodel->getCurrentStock($product_id, date('Y-m-d'), $store_id);
-        if ($stock > 0) 
+        if ($stock > 0)
 		{
 			echo json_encode(['success' => 'success', 'stock' => $stock]);
-        } 
-		else 
-		{     
+        }
+		else
+		{
             $message =  $this->Ordermodel->getProductName($product_id) . ' is out of stock';
 			echo json_encode(['success' => 'false', 'message' => $message]);
         }
     }
-    
+
     public function delete_product()
 	{
-		$this->load->model('owner/Stockmodel');
 		$product_id = $this->input->post('product_id');
 		$store_id = $this->session->userdata('logged_in_store_id');
-		if($this->Stockmodel->deleteProductByID($product_id,$store_id))
+		if($this->Productmodel->deleteProductByID($product_id,$store_id))
 		{
-			echo json_encode(['success' => 'false', 'message' => 'Product deleted successfully']);
+			echo "success";
 		}
 	}
 

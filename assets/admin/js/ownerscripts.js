@@ -260,7 +260,12 @@ $(document).ready(function () {
                             .description_arabic);
                     }
                 } else {
-                    showPopupAlert('success', 'Product details updated...', true);
+                    showPopupAlert('success', 'Product details updated...', false);
+                    setTimeout(() => {
+                        const modalEl = window.parent.document.getElementById('Edit-dish');
+                        const modal = window.parent.bootstrap.Modal.getInstance(modalEl);
+                        modal.hide();
+                    }, 2000);
                 }
             },
             error: function (xhr) {
@@ -316,12 +321,12 @@ $(document).ready(function () {
         $('#confirmDeleteProduct').modal('show');
     });
 
-    $('#confirmDeleteProductbtn').click(function () {
+    $(document).on('click', '#confirmDeleteProductbtn', function () {
         $.ajax({
-            url: base_url + "owner/stock/delete_product", // Correct endpoint
+            url: base_url + "owner/Stock/delete_product", // Correct endpoint
             data: { product_id: productID },
             type: 'POST',
-            dataType: 'json',
+            dataType: 'text',
             success: function (response) {
                 $('#confirmDeleteProduct').modal('hide');
                 location.reload();
@@ -467,6 +472,11 @@ $(document).ready(function () {
             },
             success: function (res) {
                 showPopupAlert('success', 'Variants updated successfully!', true);
+                setTimeout(() => {
+                    const modalEl = window.parent.document.getElementById('Edit-dish');
+                    const modal = window.parent.bootstrap.Modal.getInstance(modalEl);
+                    modal.hide();
+                }, 2000);
             }
         });
     });
@@ -536,6 +546,11 @@ $(document).ready(function () {
             },
             success: function (res) {
                 showPopupAlert('success', 'Addons updated successfully!', true);
+                setTimeout(() => {
+                    const modalEl = window.parent.document.getElementById('Edit-dish');
+                    const modal = window.parent.bootstrap.Modal.getInstance(modalEl);
+                    modal.hide();
+                }, 2000);
             }
         });
     });
@@ -1426,9 +1441,9 @@ $(document).on('click', '.delete-recipe', function() {
             setError("select[name='product_veg_nonveg']", "Please select type.");
         }
 
-        if ($("input[name='rate']").val().trim() === "") {
-            setError("input[name='rate']", "Rate is required.");
-        }
+        // if ($("input[name='rate']").val().trim() === "") {
+        //     setError("input[name='rate']", "Rate is required.");
+        // }
         if ($("input[name='product_name_ma']").val().trim() === "") {
             setError("input[name='product_name_ma']", "Malayalam name is required.");
         }

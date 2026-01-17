@@ -7,11 +7,25 @@ class Productmodel extends CI_Model {
         return $this->db->insert_id(); // Return inserted product ID
     }
 
+	public function deleteProductByID($product_id,$store_id)
+    {
+		//echo $product_id;echo $store_id;exit;
+        $this->db->where('store_product_id', $product_id);
+        $this->db->where('store_id', $store_id);
+        $this->db->delete('store_wise_product_assign');
+
+          // Delete product variants first, if they exist
+          $this->db->where('store_product_id', $product_id);
+          $this->db->where('store_id', $store_id);
+          $this->db->delete('store_variants');
+        return true;
+    }
+
     // Insert into product_translations table
     public function insert_translation($data) {
         $this->db->insert('product_translations', $data);
     }
-    
+
     public function storeAssignedProducts() {
 		$store_id = $this->session->userdata('logged_in_store_id');
 		$this->db->select('
