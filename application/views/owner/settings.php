@@ -65,9 +65,9 @@
                     src="https://img.icons8.com/office/30/qr-code.png" alt="add/list user">Dining QR</a>
             <?php } ?>
 
-            <a href="<?php echo base_url(); ?>owner/settings/whatsapp" class="settings-content__btn btn1"
+            <!-- <a href="<?php echo base_url(); ?>owner/settings/whatsapp" class="settings-content__btn btn1"
                 data-id="<?php echo $store_id ?>"><img class="settings-content__btn-icon"
-                    src="https://img.icons8.com/fluency/30/whatsapp.png" alt="add/list user">Whatsapp Number</a>
+                    src="https://img.icons8.com/fluency/30/whatsapp.png" alt="add/list user">Whatsapp Number</a> -->
 
 
             <?php if($is_room_tab == 1){ ?>

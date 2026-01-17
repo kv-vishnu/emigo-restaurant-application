@@ -166,7 +166,7 @@
                     </div>
                 </div>
 
-                <button class="btn btn1 mt-2" type="button" id="addNewDish">SAVE PRODUCT dd</button>
+                <button class="btn btn1 mt-2" type="button" id="addNewDish">SAVE PRODUCT</button>
         </div>
 
 

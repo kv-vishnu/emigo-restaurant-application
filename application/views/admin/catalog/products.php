@@ -61,7 +61,7 @@
             <th>Category</th>
             <th>Image</th>
             <th>Status</th>
-            <th>Actions</th>
+            <th>Actionss</th>
             </tr>
         </thead>
         <tbody id="search_result_admin_container">
@@ -77,11 +77,26 @@
                  <td><?php echo $val['product_name_en'];?></td>
                  <td><?php echo $val['category_name_en'];?></td>
                  <td>
-                    <img width="50" height="50"
-                        src="<?php echo !empty($val['image1'])
-                            ? base_url('uploads/product/' . $val['image1'])
-                            : base_url('default-image/product-no-image.jpg'); ?>"
-                        class="img-thumbnail">
+                    <?php
+                        $defaultImage = base_url('default-image/product-no-image.jpg');
+                        $imagePath   = FCPATH . 'uploads/product/';
+                        $imageUrl    = base_url('uploads/product/');
+
+                        $image = $defaultImage;
+
+                        if (
+                            !empty($val['image1']) &&
+                            file_exists($imagePath . $val['image1'])
+                        ) {
+                            $image = $imageUrl . $val['image1'];
+                        }
+                        ?>
+
+                        <img width="50" height="50"
+                            src="<?= $image ?>"
+                            class="img-thumbnail"
+                            alt="Product Image">
+
                 </td>
                 <td>
                                         <?php if ($val['is_active'] == 1) { ?>

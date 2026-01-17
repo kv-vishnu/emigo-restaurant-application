@@ -461,10 +461,28 @@ public function searchProductOnadminKeyUp(){
     // print_r($searchproducts);
     $html = '';
     $count = 1;
+
+     // Image setup
+    $defaultImage = base_url('default-image/product-no-image.jpg');
+    $imagePath   = FCPATH . 'uploads/product/';
+    $imageUrl    = base_url('uploads/product/');
+
     if (!empty($searchproducts)) {
         $count = 1;
         foreach ($searchproducts as $val) {
-            $image = base_url() . 'uploads/product/' . ($val->image1 ?? '');
+
+            $image = $defaultImage;
+
+            if (!empty($val->image1)) {
+                $ext = strtolower(pathinfo($val->image1, PATHINFO_EXTENSION));
+
+                if (
+                    in_array($ext, $allowedExt) &&
+                    file_exists($imagePath . $val->image1)
+                ) {
+                    $image = $imageUrl . $val->image1;
+                }
+            }
 
             // Status button logic
             if ($val->is_active == 1) {
