@@ -477,7 +477,6 @@ public function searchProductOnadminKeyUp(){
                 $ext = strtolower(pathinfo($val->image1, PATHINFO_EXTENSION));
 
                 if (
-                    in_array($ext, $allowedExt) &&
                     file_exists($imagePath . $val->image1)
                 ) {
                     $image = $imageUrl . $val->image1;
